@@ -1,0 +1,3 @@
+local_settings.py
+staticfiles
+__pycache__/ *.py[cod]
