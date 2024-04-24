@@ -31,11 +31,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
     'blog',
     'base',
+    'accounts',
     'pages',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -131,3 +133,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'accounts:profile'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+

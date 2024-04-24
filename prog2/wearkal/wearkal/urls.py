@@ -16,21 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from pages import views as page_views 
+ 
 
 from django.conf import settings             # N E W 
 from django.conf.urls.static import static   # N E W
 
 urlpatterns = [
 
-    path('', page_views.home),
-    path('apropos/', page_views.view_name, name='apropos'),
-    path('boutique/', page_views.view_nam, name='boutique'),
-    path('contact/', page_views.view_na, name='contact'),
-    path('voirmodel/', page_views.view_n, name='voirmodel'),
     path('blog/', include('blog.urls')),
+    path('',include('pages.urls')),
+    
+   
+         # U r l s f o r a c c o u n t m a n a g e m e n t    
+    path('accounts/', include('accounts.urls')), # N E W    
+    path('accounts/', include('django.contrib.auth.urls')),
 
-
+    
     path('admin/', admin.site.urls),
     
     

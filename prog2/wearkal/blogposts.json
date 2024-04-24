@@ -1,0 +1,1 @@
+[{"model": "blog.blogpost", "pk": 1, "fields": {"author": null, "title": "2024-04-24 10:40:45.955753+00:00", "content": "", "num_views": 0, "is_published": false, "pub_date": null}}, {"model": "blog.blogpost", "pk": 2, "fields": {"author": null, "title": "pantalon", "content": "pour homme et femme", "num_views": 0, "is_published": true, "pub_date": "2024-04-24"}}]

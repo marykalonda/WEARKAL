@@ -1,0 +1,43 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+
+{% block 'title' %}kalll{% endblock %}
+
+{% block 'content' %}    
+
+    <h1></h1>
+    <div><img src="{% static 'pages/img/dfb.jpg' %}"></div>
+    
+    <!-- <ul>        
+        {% for post in blog_post %}        
+            <a href="{% url 'blog:post_view' post.id %}">            
+                <li>{{ post.title }} (<em>{{ post.pub_date }}</em>)</li>        
+            </a>  
+            {% endfor %}    
+    </ul>  -->
+        <ul>
+            {% for post in blog_posts %}
+            <a href="{{ post.get_absolute_url }}">
+                <li>{{ post.title }} (<em>{{ post.pub_date }}</em>)</li>¨
+                {% if post.is_published %}
+                    <a href="{% url 'blog:post-change' post.id %}">
+                        <button>edit</button>
+                    </a>
+                    <a href="{% url 'blog:post-delete' post.id %}">
+                        <button>delete</button>
+                    </a>
+                {% endif %}    
+            </a>
+            {% endfor %}   
+        </ul>
+        {% if perms.blog.add_blogpost %}
+        <p>
+            <a href="{% url 'blog:post-add' %}">
+                <button>Create a New Post</button>
+            </a>
+        </p>
+        {% endif %}
+
+    <div><img src="{% static 'pages/img/pklm.jpg' %}"></div>
+
+{% endblock %}

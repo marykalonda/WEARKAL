@@ -1,0 +1,33 @@
+{% extends 'basetemplate.html' %}
+{% block 'title' %}Account Login{% endblock %}
+{% block 'content' %}    
+    <h1>Account Login</h1> 
+    {% if user.is_authenticated %}    
+    <p>You are already logged in
+        <a href= "{% url 'accounts:profile' %}" method="post"> view profil</a>
+    </p>
+    
+
+    {% else %}    
+    <form action="{% url 'login' %}" method="post">        
+        {% csrf_token %}        
+        {{ form.as_p }} 
+
+        <p>
+            <input type="submit" value="Login">
+        </p>
+            <a href="{% url 'accounts:create' %}">
+                <input type="button" value="Create New Account">
+            </a> 
+            <a href="{% url 'password_reset' %}">
+                <input type="button" value="forget pwd?">
+            </a>   
+
+    </form> 
+    {% endif %}   
+    
+{% endblock %}
+
+
+
+

@@ -15,3 +15,5 @@ def view_na(request):
 
 def view_n(request):    
     return render(request, 'pages/voirmodel.html')
+
+
