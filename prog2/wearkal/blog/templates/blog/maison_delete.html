@@ -1,0 +1,15 @@
+
+{% load static %}
+{% block 'title' %}Effacer atelier : {{ post.nom }}{% endblock %}
+{% block 'content' %}    
+<a href="{% url 'blog:maison-list' %}">Retourner à la page précédente</a>
+<h1>Supprimer l'atelier : {{ maison.nom }}</h1>
+<form action="{% url 'blog:maison-delete' maison.id %}" method="post">        
+    {% csrf_token %}
+    <p>Etes vous sûr de vouloir supprimer cet atelier ?</p>        
+    <input type="submit" value="Oui">        
+    <a href="{{ maison.get_absolute_url }}">            
+        <input type="button" value="Annuler">
+    </a>
+</form>       
+{% endblock %}

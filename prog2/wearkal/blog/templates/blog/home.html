@@ -5,39 +5,47 @@
 
 {% block 'content' %}    
 
-    <h1></h1>
-    <div><img src="{% static 'pages/img/dfb.jpg' %}"></div>
-    
-    <!-- <ul>        
-        {% for post in blog_post %}        
-            <a href="{% url 'blog:post_view' post.id %}">            
-                <li>{{ post.title }} (<em>{{ post.pub_date }}</em>)</li>        
-            </a>  
-            {% endfor %}    
-    </ul>  -->
-        <ul>
+    <h1>MODELES LOCALES</h1>
+    <P>
+        Ici ,nous publions differents modeles : tendance , culturel ou hautecouture
+        Ce sont des modeles proposes par notre atelier ,cliquer sur pour en savoir plus!
+    </P>
+
+    <ul>
             {% for post in blog_posts %}
-            <a href="{{ post.get_absolute_url }}">
-                <li>{{ post.title }} (<em>{{ post.pub_date }}</em>)</li>¨
+            <div style="display: flex; ">
+                <div style="display: grid;">
+                    <a href="{{ post.get_absolute_url }}">
+                        <li>{{ post.title }} (<em>{{ post.pub_date }}</em>)</li>
+                    </a>
+                    <div style="display: flex;">
+                        {% if post.image %}    
+                            <img style="width:400px" src="{{ post.image.url }}" >   
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            
+
+            <div>
                 {% if post.is_published %}
-                    <a href="{% url 'blog:post-change' post.id %}">
-                        <button>edit</button>
+                    <a href="{% url 'blog:post-change' post.id %}" style="padding-left: 200px ; margin-top: 10%;">
+                        <button>Modifier</button>
                     </a>
-                    <a href="{% url 'blog:post-delete' post.id %}">
-                        <button>delete</button>
+
+                    <a href="{% url 'blog:post-delete' post.id %}" style="padding-left: 200px ; margin-top: 10%;">
+                        <button>Supprimer</button>
                     </a>
-                {% endif %}    
-            </a>
+                {% endif %} 
+
+            </div>
+            </div>
+           
             {% endfor %}   
         </ul>
         {% if perms.blog.add_blogpost %}
-        <p>
-            <a href="{% url 'blog:post-add' %}">
-                <button>Create a New Post</button>
-            </a>
-        </p>
+                    <a href="{% url 'blog:post-add' %}"><button>Ajouter une nouvelle publications</button></a>
+                    <a href="/"><button>Retourner sur la page d'acceuil</button> </a>
         {% endif %}
-
-    <div><img src="{% static 'pages/img/pklm.jpg' %}"></div>
-
 {% endblock %}

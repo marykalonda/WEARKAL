@@ -1,0 +1,16 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+{% block 'title' %}Ajouter une maison de couture{% endblock %}
+
+{% block 'content' %}    
+
+    <a href="{% url 'blog:maison-list' %}"><button>Retourner a la page precedente</button></a>
+    <h3>Completer ce formulaire enfin d'ajouter votre atelier sur la liste :</h3>
+
+    <form action="{% url 'blog:maison-add' %}" method="post" enctype="multipart/form-data">        
+        {% csrf_token %}        
+        {{ form.as_p }}
+        <input type="submit" value="Submit">    
+    </form> 
+    
+{% endblock %}

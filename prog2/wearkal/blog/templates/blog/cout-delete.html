@@ -1,0 +1,15 @@
+
+{% load static %}
+{% block 'title' %}Supprimer couturier : {% endblock %}
+{% block 'content' %}    
+<a href="{% url 'blog:cout-home' %}">Retourner a la page precedente</a>
+    <h1>Supprimer la publication : {{ post.nom_complet }}</h1>
+    <form action="{% url 'blog:cout-delete' post.id %}" method="post">        
+        {% csrf_token %}
+        <p>Etes vous sur de vouloir supprimer cette publication ?</p>        
+        <input type="submit" value="Oui">        
+        <a href="{{ post.get_absolute_url }}">            
+            <input type="button" value="Annuler">
+        </a>
+    </form>       
+{% endblock %}

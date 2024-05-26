@@ -1,0 +1,21 @@
+{% load static %}
+{% block 'title' %}{% endblock %}
+
+{% block 'content' %}    
+    <a href="{% url 'blog:maison-list' %}">Retourner a la page precedente</a>
+    
+
+    <h1>{{ atelier.nom_complet }}</h1>
+    {% if atelier.photo %}    
+        <img style="width:400px" src="{{ couturier.photo_atel.url }}" >   
+    {% endif %}
+    <p>Informations le couturier :</p>
+
+    <p>------------------------------------------------------------------</p>
+    <p>contact :{{ atelier.telephone }}
+        email :{{ atelierier.email }}
+        Specialisation : {{ atelier.specialisation}}
+        nom atelier :{{ atelier.nom }}
+        adresse atelier :{{ atelier.adresse }}</p>
+    <p>------------------------------------------------------------------</p> 
+{% endblock %}

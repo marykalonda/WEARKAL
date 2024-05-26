@@ -1,16 +1,28 @@
 {% extends 'basetemplate.html' %} 
 {% load static %}
 {% block 'content' %} 
-    <h1>Tout savoir sur nous </h1>
-    <p>
-        Nous sommes une entreprise locale specilise dqns le domaine de la couture
-        .Nous vous proposons certains services entre autres :
-
-
-    </p>
-    <div>
-        <h2></h2>
-        <img src="{% static 'pages/img/LOGO.jpg' %}">
+    <header>
+        <h1>
+            Tout savoir sur nous
+        </h1> </header>
+    <p class="introduction">
+        <H2>FASHION AS UNIQUE AS YOU ARE </H2>
+        Bienvenue dans notre univers de la couture, où chaque fil et 
+        chaque point racontent une histoire unique. Chez WEARKAL
+        , nous fusionnons l'art intemporel de la couture avec l'innovation 
+        contemporaine pour créer des pièces qui incarnent l'élégance, le 
+        raffinement et la créativité. Que vous soyez passionné par la mode
+         ou à la recherche de vêtements sur mesure, notre équipe de couturiers
+          talentueux est déterminée à donner vie à vos rêves les plus exquis.
+           Plongez dans notre monde de tissus somptueux, de designs exquis
+         et de savoir-faire exceptionnel, et laissez-nous vous emmener dans un 
+         voyage unique au cœur de la couture.
+    </p> 
+    <div class="footer">
+            <img src="{% static 'pages/img/LOGO.jpg' %}" height="300" width="300">
+            <img src="{% static 'pages/img/images.jpg' %}" height="300" width="300" >
+            <img src="{% static 'pages/img/ilk.jpg' %}" height="300" width="300" >
+            <img src="{% static 'pages/img/ik.jpg' %}" height="300" width="300" > 
     </div>  
     <nav>
         <ul>

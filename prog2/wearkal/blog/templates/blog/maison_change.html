@@ -1,0 +1,17 @@
+
+{% load static %}
+{% block 'title' %}Edit Atelier: {{ maison.nom }}{% endblock %}
+{% block 'content' %}    
+    <a href="{% url 'blog:maison-list' %}">Retourner à la page précédente</a>
+    <h1>Modifier votre atelier ici</h1>
+    <form action="{% url 'blog:maison-change' maison.id %}" method="post" enctype="multipart/form-data">        
+        {% csrf_token %}        
+        {{ form.as_p }}
+        <input type="submit" value="Submit">    
+    </form> 
+
+    <p>    
+        <a href="{% url 'blog:maison-detail' maison.id %}">Back</a> 
+    </p>
+
+{% endblock %}

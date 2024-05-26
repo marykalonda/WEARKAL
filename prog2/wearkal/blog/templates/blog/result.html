@@ -1,0 +1,44 @@
+
+{% load static %}
+{% block title %}{% endblock %}
+
+{% block content %}
+
+    <h1>Rechercher un couturier</h1>
+    <form method="get" action="{% url 'blog:search' %}">
+        {{ form.as_p }}
+        <button type="submit">Envoyer la recherche</button>
+    </form>
+
+    <ul>
+        {% for result in results %}
+            <li>{{ result.nom_complet }}</li>
+            <li>{% if result.photo %}    
+                    <img style="width:400px" src="{{ result.photo.url }}" >   
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Le couturier n'existe pas</li>
+        {% endfor %}
+    </ul>    
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

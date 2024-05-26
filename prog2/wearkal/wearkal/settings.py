@@ -28,6 +28,10 @@ SECRET_KEY = 'django-insecure-l#y+bc_$n38grygq=t-cqhbr2gi(n*0mw@en7^0yz1rly#7vdi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+MEDIA_URL = '/media/' 
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
 ALLOWED_HOSTS = []
 
 
@@ -84,8 +88,8 @@ WSGI_APPLICATION = 'wearkal.wsgi.application'
 DATABASES = {
     'default': {
          'ENGINE'  : 'django.db.backends.mysql',         
-         'NAME'    : 'wearkaldb',                         
-         'USER'    : 'new_user',                             
+         'NAME'    : 'kaldb',                         
+         'USER'    : 'mariam',                             
          'PASSWORD': DATABASE_PASSWORD,                      
          'HOST'    : 'localhost',                       
          'PORT'    : '3306', 

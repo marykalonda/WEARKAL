@@ -1,14 +1,15 @@
 {% extends 'basetemplate.html' %}
-
+{% load static %}
 {% block 'title' %}Create a new Blog Post{% endblock %}
 
 {% block 'content' %}    
 
-    <a href="{% url 'blog:home' %}">Home</a>
+    <a href="{% url 'blog:home' %}"><button>Retourner a la page precedente</button></a>
+    <h3>Completer ce formulaire enfin d'ajouter une nouvelle publication</h3>
 
-    <form action="{% url 'blog:post-add' %}" method="post">        
+    <form action="{% url 'blog:post-add' %}" method="post" enctype="multipart/form-data">        
         {% csrf_token %}        
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="Submit">    
     </form> 
     

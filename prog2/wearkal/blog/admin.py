@@ -6,8 +6,9 @@ from .models import *
 
 
 # register each model with the admin site
-admin.site.register(BlogPost)
+admin.site.register(patron)
 admin.site.register(couturier)
+admin.site.register(MaisonCouture)
 
 
 # Register your models here.

@@ -1,0 +1,44 @@
+{% extends 'basetemplate.html' %}
+{% load static %}
+{% block 'title' %}{% endblock %}
+{% block 'content' %} 
+
+
+    
+        <h1> Nos couturiers et couturieres : </h1>
+        <h3>Rechercher un couturier <a href="{% url 'blog:search'  %}"><button>here</button></a></h3>
+    
+    {% for post in couturiers %}
+
+        <div style="display: flex; border: solid 3px;">
+            <a href="{{ post.get_absolute_url }}">
+                {% if post.photo %}    
+                <img style="width:400px" src="{{ post.photo.url }}" >   
+                {% endif %}
+            </a>
+            <div style="display: grid;">
+                <h1 style="padding-left: 200px ; margin-top: 20px;">{{ post.nom_complet }}</h1>
+                <h3 style="padding-left: 200px ; margin-top: 20px;">Plus connu sous le nom de : {{ post.nom_populaire }}</h3>
+                <h3 style="padding-left: 200px ; margin-top: 20px;">Adresse mail :{{ post.email }}</h3>
+                <div style="display: flex;">
+                    <a href="{% url 'blog:cout-delete' post.id %}" style="padding-left: 200px ; margin-top: 20px;"><button>Effacer le couturier ?</button></a>
+                    <a href="{% url 'blog:cout-view' post.id  %}" style="padding-left: 200px ; margin-top: 20px;"><button>En savoir plus </button></a>       
+                </div>
+            </div>
+        </div> 
+
+
+    
+    {% endfor %}
+
+
+{% endblock %}
+
+
+
+
+
+   
+
+
+    

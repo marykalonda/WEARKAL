@@ -1,16 +1,20 @@
 {% extends 'basetemplate.html' %}
-
+{% load static %}
 {% block 'title' %}{{ post.title }}{% endblock %}
 
 {% block 'content' %}    
-    <a href="{% url 'blog:home' %}">Home</a>
+    <a href="{% url 'blog:home' %}">Retourner a la page precedente</a>
+    
 
     <h1>{{ post.title }}</h1>
+    {% if post.image %}    
+        <img style="width:400px" src="{{ post.image.url }}" >   
+    {% endif %}
 
-    <p>Published: <em>{{ post.pub_date }}</em></p>
+    <p>Ce modele a ete publie en date du :<em>{{ post.pub_date }}</em></p>
 
-    <p>{{ post.content }}</p>
-
-    <p><em>{{ post.num_views }} views</em></p> 
-    
+    <p>Tout savoir sur le modele "{{ post.title }}"" :</p>
+    <p>------------------------------------------------------------------</p>
+    <p>{{ post.explain }}</p>
+    <p>------------------------------------------------------------------</p> 
 {% endblock %}

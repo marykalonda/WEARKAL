@@ -1,0 +1,21 @@
+
+{% load static %}
+{% block 'title' %}{% endblock %}
+
+{% block 'content' %}    
+    <a href="{% url 'blog:cout-home' %}">Retourner a la page precedente</a>
+    
+
+    <h1>{{ couturier.nom_complet }}</h1>
+    {% if couturier.photo %}    
+        <img style="width:400px" src="{{ couturier.photo.url }}" >   
+    {% endif %}
+    <p>Informations le couturier :</p>
+
+    <p>------------------------------------------------------------------</p>
+    <p>contact :{{ couturier.contact }}
+        email :{{ couturier.email }}
+        nom atelier :{{ couturier.nom_atelier }}
+        adresse atelier :{{ couturier.adresse_atelier }}</p>
+    <p>------------------------------------------------------------------</p> 
+{% endblock %}

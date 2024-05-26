@@ -1,0 +1,37 @@
+{% extends 'basetemplate.html' %} 
+{% load static %}
+{% block 'title' %}{% endblock %}
+{% block 'content' %} 
+
+
+    
+        <h1> Les ateliers disponibles dans notre chere ville de Beni/Nord-Kivu : </h1>
+
+
+    
+    {% for post in maisons %}
+
+        <div style="display: flex;">
+            <a href="{{ post.get_absolute_url }}">
+                {% if post.photo_atel %}    
+                <img style="width:400px" src="{{ post.photo_atel.url }}" >   
+                {% endif %}
+            </a>
+            <div style="display: grid;">
+                <h1 style="padding-left: 200px ; margin-top: 20px;">{{ post.nom }}</h1>
+                <h3 style="padding-left: 200px ; margin-top: 20px;">Adresse : {{ post.adresse }}</h3>
+                <h3 style="padding-left: 200px ; margin-top: 20px;">Site officiel : {{ post.site_web }}</h3>
+                <div style="display: flex;">
+                    <a href="{% url 'blog:maison-delete' post.id %}" style="padding-left: 200px ; margin-top: 20px;"><button>Effacer le couturier ?</button></a>
+                    <a href="{% url 'blog:maison-detail' post.id  %}" style="padding-left: 200px ; margin-top: 20px;"><button>En savoir plus </button></a>
+                    <a href="{% url 'blog:maison-change' post.id  %}" style="padding-left: 200px ; margin-top: 20px;"><button>Modifier </button></a>     
+                </div>
+            </div>
+        </div> 
+    {% endfor %}
+    {% if perms.blog.add_maisoncouture %}
+                    <a href="{% url 'blog:maison-add' %}"><button>Ajouter une nouvelle publications</button></a>
+    {% endif %}
+
+
+{% endblock %}

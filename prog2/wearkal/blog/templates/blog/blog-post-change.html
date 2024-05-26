@@ -1,18 +1,14 @@
 {% extends 'basetemplate.html' %}
+{% load static %}
 {% block 'title' %}Edit Post: {{ post.title }}{% endblock %}
 {% block 'content' %}    
-    <a href="{% url 'blog:home' %}">Home</a>
-    <h1>Edit Blog Post</h1>
-    <form action="{% url 'blog:post-change' post.id %}" method="post">        
+    <a href="{% url 'blog:home' %}">Retourner a la page precedente</a>
+    <h1>Modifier votre publication ici</h1>
+    <form action="{% url 'blog:post-change' post.id %}" method="post" enctype="multipart/form-data">        
         {% csrf_token %}        
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="Submit">    
     </form> 
-
-    <!-- <h1>{{ post.title }}</h1>
-    <p>    
-        <a href="{% url 'blog:post-change' post.id %}">Edit Post</a> 
-    </p> -->
 
     <p>    
         <a href="{% url 'blog:post-detail' post.id %}">Back</a> 

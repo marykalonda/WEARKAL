@@ -1,14 +1,15 @@
 {% extends 'basetemplate.html' %}
+{% load static %}
 {% block 'title' %}Delete Post: {{ post.title }}{% endblock %}
 {% block 'content' %}    
-<a href="{% url 'blog:home' %}">Home</a>
-    <h1>Delete Post: {{ post.title }}</h1>
+<a href="{% url 'blog:home' %}">Retourner a la page precedente</a>
+    <h1>Supprimer la publication : {{ post.title }}</h1>
     <form action="{% url 'blog:post-delete' post.id %}" method="post">        
         {% csrf_token %}
-        <p>Are you sure you want to delete this post?</p>        
-        <input type="submit" value="Yes">        
+        <p>Etes vous sur de vouloir supprimer cette publication ?</p>        
+        <input type="submit" value="Oui">        
         <a href="{{ post.get_absolute_url }}">            
-            <input type="button" value="Cancel">
+            <input type="button" value="Annuler">
         </a>
     </form>       
 {% endblock %}
