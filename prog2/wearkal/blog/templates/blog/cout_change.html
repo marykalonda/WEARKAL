@@ -1,0 +1,17 @@
+{% extends 'basetemplate.html' %} 
+{% load static %}
+{% block title %}Edit Couturier: {{ post.nom_complet }}{% endblock %}
+{% block content %}    
+    <a href="{% url 'blog:cout_home' %}">Home</a>
+    <h1>Edit Couturier</h1>
+    <form action="{% url 'blog:cout_change' post.id %}" method="post" enctype="multipart/form-data">        
+        {% csrf_token %}        
+        {{ form.as_p }}
+        <input type="submit" value="Submit">    
+    </form> 
+
+    <p>    
+        <a href="{% url 'blog:cout_detail' post.id %}">Back</a> 
+    </p>
+
+{% endblock %}

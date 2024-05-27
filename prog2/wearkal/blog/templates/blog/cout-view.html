@@ -1,4 +1,4 @@
-
+{% extends 'basetemplate.html' %} 
 {% load static %}
 {% block 'title' %}{% endblock %}
 
@@ -10,12 +10,15 @@
     {% if couturier.photo %}    
         <img style="width:400px" src="{{ couturier.photo.url }}" >   
     {% endif %}
-    <p>Informations le couturier :</p>
+    <p>Informations le(la) couturier(e) :</p>
 
     <p>------------------------------------------------------------------</p>
-    <p>contact :{{ couturier.contact }}
-        email :{{ couturier.email }}
-        nom atelier :{{ couturier.nom_atelier }}
-        adresse atelier :{{ couturier.adresse_atelier }}</p>
+    <p>
+        <li>Il(elle) est plus connu(e) sous le nom de {{ couturier.nom_populaire }}</li>
+        <li>Contact : Telephone {{ couturier.contact }} et Email : {{ couturier.email }}</li>
+        <li>Proprietaire et responsable de l'atelier :{{ couturier.nom_atelier }}</li>
+        <li>Adresse atelier :{{ couturier.adresse_atelier }}</p></li>
+        
+        
     <p>------------------------------------------------------------------</p> 
 {% endblock %}

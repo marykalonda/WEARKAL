@@ -1,19 +1,25 @@
 from django.shortcuts import render, get_object_or_404 ,redirect
 from django.contrib.auth.decorators import permission_required, login_required
-from datetime import datetime 
+from datetime import datetime
+from django.http import HttpResponse 
 from blog.models import*
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib import messages
 
 
 
-from blog.forms import PatronForm, couturierForm,MaisonCoutureForm,SearchForm
+from blog.forms import PatronForm, couturierForm,MaisonCoutureForm,SearchForm,CommentAddForm
 
 def home(request): 
     posts = (patron.objects
                 .filter(is_published=True)                
                 .order_by('-pub_date')[:10]            
     )
+    formulaire = CommentAddForm(request.POST)
     data = {        
-    'blog_posts': posts    
+    'blog_posts': posts, 
+    'formulaire': formulaire   
     }
     return render(request, 'blog/home.html', data)
 
@@ -150,3 +156,35 @@ def search_view(request):
         results = couturier.objects.filter(nom_complet__icontains=query)
     
     return render(request, 'blog/result.html', {'form': form, 'results': results})
+#----------------------------------------------------------------------------------------
+@login_required
+def comment_add(request, post_id):
+    post = get_object_or_404(patron, id=post_id)
+    if request.method == 'POST':
+        form = CommentAddForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.save()
+
+    return redirect(reverse('blog:home'))
+
+#---------------------------------------------------------------------------------------
+
+@receiver(post_save, sender=patron)
+@receiver(post_save, sender=MaisonCouture)
+
+def Notifcations(sender, instance, created, **kwargs):
+    if created :
+        request = kwargs.get('request')
+        if request:
+            messages.info(request, f'New {sender.__name__} created: {instance.nom}')
+    return HttpResponse("Notifications avec succes!")
+#----------------------------------------------------------------------------------------
+def nombre_visiteurs(request):
+    nombre_visites = Visite.objects.count()
+    context = {
+        'nombre_visites': nombre_visites
+    }
+    return render(request, 'blog/maison_home.html', context)

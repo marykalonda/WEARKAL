@@ -1,3 +1,4 @@
+{% extends 'basetemplate.html' %} 
 {% load static %}
 {% block 'title' %}{% endblock %}
 
@@ -5,17 +6,24 @@
     <a href="{% url 'blog:maison-list' %}">Retourner a la page precedente</a>
     
 
-    <h1>{{ atelier.nom_complet }}</h1>
-    {% if atelier.photo %}    
-        <img style="width:400px" src="{{ couturier.photo_atel.url }}" >   
+    <h1> {{ atelier.nom }}</h1>
+    {% if atelier.photo_atel %}    
+        <img style="width:400px" src="{{ atelier.photo_atel.url }}" >   
     {% endif %}
-    <p>Informations le couturier :</p>
+    <p>Informations l'atelier :</p>
 
     <p>------------------------------------------------------------------</p>
-    <p>contact :{{ atelier.telephone }}
-        email :{{ atelierier.email }}
-        Specialisation : {{ atelier.specialisation}}
-        nom atelier :{{ atelier.nom }}
-        adresse atelier :{{ atelier.adresse }}</p>
-    <p>------------------------------------------------------------------</p> 
+    <p>
+        <li>Nos contact : Telephone{{ atelier.telephone }} et Email :{{ atelierier.email }}</li>
+        <li>Specialisation : {{ atelier.specialisation}}</li>
+        <li> Adresse atelier :{{ atelier.adresse }}</li>
+        <li>L'atelier {{ atelier.nom }} en ville depuis {{ atelier.date_creation}} </li>
+        
+       
+        {{ atelier.description }}</p>
+    <p>------------------------------------------------------------------</p>
+    <div>
+        <a href="https://twitter.com/intent/tweet?url={{ atelier.get_absolute_url }}" target="_blank"><button>Partager sur Twitter</button></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ atelier.get_absolute_url }}" target="_blank"><button>Partager sur Facebook</button></a>
+    </div> 
 {% endblock %}

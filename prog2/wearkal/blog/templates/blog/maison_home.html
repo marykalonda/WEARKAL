@@ -6,6 +6,7 @@
 
     
         <h1> Les ateliers disponibles dans notre chere ville de Beni/Nord-Kivu : </h1>
+        
 
 
     
@@ -21,6 +22,8 @@
                 <h1 style="padding-left: 200px ; margin-top: 20px;">{{ post.nom }}</h1>
                 <h3 style="padding-left: 200px ; margin-top: 20px;">Adresse : {{ post.adresse }}</h3>
                 <h3 style="padding-left: 200px ; margin-top: 20px;">Site officiel : {{ post.site_web }}</h3>
+                <h3 style="padding-left: 200px ; margin-top: 20px;">Nombre total de visiteurs : {{ post.nombre_visites }}</h3>
+
                 <div style="display: flex;">
                     <a href="{% url 'blog:maison-delete' post.id %}" style="padding-left: 200px ; margin-top: 20px;"><button>Effacer le couturier ?</button></a>
                     <a href="{% url 'blog:maison-detail' post.id  %}" style="padding-left: 200px ; margin-top: 20px;"><button>En savoir plus </button></a>
@@ -31,6 +34,13 @@
     {% endfor %}
     {% if perms.blog.add_maisoncouture %}
                     <a href="{% url 'blog:maison-add' %}"><button>Ajouter une nouvelle publications</button></a>
+    {% endif %}
+    {% if messages %}
+        <ul class="message">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags}}"{% endif %}>ggggggggggg{{ message }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
 
 

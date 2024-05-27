@@ -40,6 +40,8 @@ class MaisonCouture(models.Model):
         site_web = models.URLField()
         description = models.TextField()
         date_creation = models.DateField()
+        def compte_visit(self):
+              return self.visiteurs.count()
 
         def __str__(self):        
                 return self.nom
@@ -64,4 +66,17 @@ class couturier(models.Model):
     @property
     def recherche_nom_complet(self):
         return self.nom_complet
+    
+class Comment(models.Model):    
+    post = models.ForeignKey(patron, on_delete=models.CASCADE)    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)    
+    Ajouter_commentaire = models.CharField(max_length=1000)    
+    time = models.DateTimeField(auto_now_add=True)
+
+class Visite(models.Model):
+    nom = models.CharField(max_length=100)
+    date_visite = models.DateField()
+
+
+
 

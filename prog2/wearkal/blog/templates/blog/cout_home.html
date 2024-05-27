@@ -1,0 +1,32 @@
+{% extends 'basetemplate.html' %} 
+{% load static %}
+
+{% block title %}Nos Couturiers et Couturières{% endblock %}
+
+{% block content %}    
+
+    <header><h1>NOS COUTURIERS ET COUTURIÈRES</h1></header>
+    <ul>
+        {% for post in couturiers %}
+            <a href="{{ post.get_absolute_url }}">
+                <li>{{ post.nom_complet }} (<em>{{ post.nom_atelier }}</em>)</li>
+                {% if post.nom_populaire %}
+                    <a href="{% url 'blog:cout_change' post_id=post.id %}">
+                        <button>Edit</button>
+                    </a>
+                    <a href="{% url 'blog:cout_delete' post_id=post.id %}">
+                        <button>Delete</button>
+                    </a>
+                {% endif %}    
+            </a>
+        {% endfor %}   
+    </ul>
+
+    {% if perms.blog.cout_add %}
+        <p>
+            <a href="{% url 'blog:cout_add' %}">
+                <button>Create a New Couturier</button>
+            </a>
+        </p>
+    {% endif %}
+{% endblock %}

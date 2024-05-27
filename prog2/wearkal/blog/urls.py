@@ -12,6 +12,9 @@ urlpatterns = [
      path('post/<int:post_id>/change/', views.blog_post_change, name='post-change'),
      path('post/<int:post_id>/delete/', views.blog_post_delete, name='post-delete'),
      path('post/<int:post_id>/publish/', views.blog_post_publish, name='post-publish'),
+     path('comment_add/<int:post_id>/', views.comment_add,name='comment_add'),
+     path('post/<int:post_id>/comment/add/', views.comment_add, name='comment_add'),
+    
      #-----------------------------------------------------------------------------------
      path('couturier/', views.cout_home, name='cout-home'),      
      path('couturier/<int:id>/view', views.cout_view, name='cout-view'),
@@ -23,7 +26,7 @@ urlpatterns = [
      path('atelier/add/', views.maisoncouture_add, name='maison-add'),
      path('atelier/<int:maison_id>/change/', views.maisoncouture_change, name='maison-change'),
      path('atelier/<int:maison_id>/delete/', views.maisoncouture_delete, name='maison-delete'),
+     path('atelier/nombre-visiteurs/', views.nombre_visiteurs, name='nombre_visiteurs'),
      #-------------------------------------------------------------------------------------------
      
-    
     ]

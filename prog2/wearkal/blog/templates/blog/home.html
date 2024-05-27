@@ -10,6 +10,13 @@
         Ici ,nous publions differents modeles : tendance , culturel ou hautecouture
         Ce sont des modeles proposes par notre atelier ,cliquer sur pour en savoir plus!
     </P>
+    {% if messages %}
+        <ul>
+            {% for notif in messages %}
+                <li {% if notif.tags %} class="{{ notif.tags}}"{% endif %}>{{ notif }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <ul>
             {% for post in blog_posts %}
@@ -26,20 +33,44 @@
 
                 </div>
 
+                <div style="display: flex;">
+                    <div style="display: grid;">
+                        {% for comment in post.comment_set.all %}    
+                            <div style="background-color: white">        
+                                <p><em>{{ comment.user.first_name }} a commenter</em></p>        
+                                <p>{{ comment.Ajouter_commentaire }}</p>        
+                            </div> 
+                        {% endfor %} 
+            
+                        <form action="{%url 'blog:comment_add' post_id=post.id%}" method="POST" id="commentform">
+                            {% csrf_token %}
+                            {{ formulaire.as_p}}
+                            <button type="submit">Envoyer</button>
+                        </form>    
+        
+                        
+                    </div>
+
+                    {% if post.is_published %}
+                            <a href="{% url 'blog:post-change' post.id %}" style="padding-left: 200px ; margin-top: 10%;">
+                                <button>Modifier</button>
+                            </a>
+        
+                            <a href="{% url 'blog:post-delete' post.id %}" style="padding-left: 200px ; margin-top: 10%;">
+                                <button>Supprimer</button>
+                            </a>
+                    {% endif %} 
+        
+
+
+                           
+                        
+        
+
+                </div>
             
 
-            <div>
-                {% if post.is_published %}
-                    <a href="{% url 'blog:post-change' post.id %}" style="padding-left: 200px ; margin-top: 10%;">
-                        <button>Modifier</button>
-                    </a>
 
-                    <a href="{% url 'blog:post-delete' post.id %}" style="padding-left: 200px ; margin-top: 10%;">
-                        <button>Supprimer</button>
-                    </a>
-                {% endif %} 
-
-            </div>
             </div>
            
             {% endfor %}   
